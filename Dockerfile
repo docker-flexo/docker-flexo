@@ -1,4 +1,4 @@
-ARG FLEXO_VERSION=1.0.0
+ARG FLEXO_VERSION=1.0.1
 
 FROM rust:1.43.1-buster as build
 
