@@ -1,6 +1,6 @@
 ARG FLEXO_VERSION=1.0.7
 
-FROM rust:1.47.0-slim-buster as build
+FROM rust:1.47.0-buster as build
 
 ARG FLEXO_VERSION
 
