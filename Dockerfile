@@ -1,6 +1,6 @@
-ARG FLEXO_VERSION=1.0.7
+ARG FLEXO_VERSION=1.0.8
 
-FROM rust:1.47.0-buster as build
+FROM rust:1.48.0-buster as build
 
 ARG FLEXO_VERSION
 
