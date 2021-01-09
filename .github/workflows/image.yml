@@ -7,8 +7,6 @@ on:
       - LICENSE
     branches:
       - main
-    tags:
-      - "*.*.*"
 
 jobs:
   main:
