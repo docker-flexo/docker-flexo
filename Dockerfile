@@ -1,19 +1,35 @@
 ARG FLEXO_VERSION=1.0.12
 
-FROM rust:1.48.0-buster as build
+# A separate stage is used only for fetching the dependencies:
+# This is done so that we can use cargo's --offline mode in a subsequent stage,
+# as a workaround for this bug: https://github.com/docker/buildx/issues/395
+FROM --platform=linux/amd64 rust:1.49.0-buster as fetch
 
 ARG FLEXO_VERSION
 
 WORKDIR /tmp
 
-RUN mkdir /tmp/build_output
+RUN mkdir /tmp/flexo_sources
 
 RUN wget -q https://github.com/nroi/flexo/archive/$FLEXO_VERSION.tar.gz && \
     tar xf $FLEXO_VERSION.tar.gz
 
 RUN cd flexo-$FLEXO_VERSION/flexo && \
-    cargo build --release && \
-    cp target/release/flexo /tmp/build_output/
+    cargo vendor && \
+    cd .. && \
+    cp -r flexo /tmp/flexo_sources/
+
+FROM --platform=linux/amd64 rust:1.49.0-buster as build
+
+COPY --from=fetch /tmp/flexo_sources/ /tmp/flexo_sources
+
+RUN mkdir /tmp/flexo_sources/flexo/.cargo
+
+COPY cargo-config /tmp/flexo_sources/flexo/.cargo/config
+
+RUN cd /tmp/flexo_sources/flexo && \
+    cargo build --release --offline && \
+    cp target/release/flexo /tmp/flexo
 
 FROM debian:buster-slim
 
@@ -55,6 +71,6 @@ ENV FLEXO_CACHE_DIRECTORY="/var/cache/flexo/pkg" \
 
 ENV RUST_LOG="info"
 
-COPY --from=build /tmp/build_output/flexo /usr/bin/flexo
+COPY --from=build /tmp/flexo /usr/bin/flexo
 
 ENTRYPOINT /usr/bin/flexo
