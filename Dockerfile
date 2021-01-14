@@ -3,7 +3,7 @@ ARG FLEXO_VERSION=1.0.12
 # A separate stage is used only for fetching the dependencies:
 # This is done so that we can use cargo's --offline mode in a subsequent stage,
 # as a workaround for this bug: https://github.com/docker/buildx/issues/395
-FROM --platform=linux/amd64 rust:1.49.0-buster as fetch
+FROM --platform=$BUILDPLATFORM rust:1.49.0-buster as fetch
 
 ARG FLEXO_VERSION
 
