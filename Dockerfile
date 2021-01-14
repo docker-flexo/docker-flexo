@@ -19,7 +19,7 @@ RUN cd flexo-$FLEXO_VERSION/flexo && \
     cd .. && \
     cp -r flexo /tmp/flexo_sources/
 
-FROM --platform=linux/amd64 rust:1.49.0-buster as build
+FROM rust:1.49.0-buster as build
 
 COPY --from=fetch /tmp/flexo_sources/ /tmp/flexo_sources
 
