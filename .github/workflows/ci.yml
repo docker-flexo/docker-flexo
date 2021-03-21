@@ -22,6 +22,7 @@ jobs:
   # 2nd job, because we weren't able to get multiplatform support running with
   # Docker Hub.
   push_to_ghcr:
+    name: Push Docker image GHCR
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -46,7 +47,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
       - name: Image digest
