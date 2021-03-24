@@ -2,7 +2,10 @@ name: Build docker image
 
 on:
   push:
-    branches: master
+    branches:
+      - master
+    tags:
+      - '*.*.*'
 
 jobs:
   push_to_dockerhub:
