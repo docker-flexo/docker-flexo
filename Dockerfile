@@ -1,4 +1,4 @@
-ARG FLEXO_VERSION=1.2.3
+ARG FLEXO_VERSION=1.3.0
 
 # A separate stage is used only for fetching the dependencies:
 # This is done so that we can use cargo's --offline mode in a subsequent stage,
@@ -73,6 +73,7 @@ ENV FLEXO_CACHE_DIRECTORY="/var/cache/flexo/pkg" \
     FLEXO_LOW_SPEED_LIMIT=128000 \
     FLEXO_LOW_SPEED_TIME_SECS=3 \
     FLEXO_MIRRORLIST_FALLBACK_FILE="/var/cache/flexo/state/mirrorlist" \
+    FLEXO_LISTEN_IP_ADDRESS="0.0.0.0" \
     FLEXO_PORT=7878 \
     FLEXO_MIRROR_SELECTION_METHOD="auto" \
     FLEXO_MIRRORS_PREDEFINED=[] \
