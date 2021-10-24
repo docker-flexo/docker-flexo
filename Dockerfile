@@ -1,4 +1,4 @@
-ARG FLEXO_VERSION=1.6.1
+ARG FLEXO_VERSION=1.6.2
 
 # A separate stage is used only for fetching the dependencies:
 # This is done so that we can use cargo's --offline mode in a subsequent stage,
