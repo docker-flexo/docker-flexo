@@ -1,7 +1,7 @@
 # docker-flexo
 dockerized flexo: https://github.com/nroi/flexo
 
-The settings can be modified with environment variables. Each environment variable corresponds to a setting in [flexo.toml](https://github.com/nroi/flexo/blob/master/flexo/conf/flexo.toml). Environment variables are always prefixed with `FLEXO_`, for example, `listen_ip_address corresponds` to the `FLEXO_LISTEN_IP_ADDRESS` environment variable.
+The settings can be modified with environment variables. Each environment variable corresponds to a setting in [flexo.toml](https://github.com/nroi/flexo/blob/master/flexo/conf/flexo.toml). Environment variables are always prefixed with `FLEXO_`, for example, `listen_ip_address` corresponds to the `FLEXO_LISTEN_IP_ADDRESS` environment variable.
 
 The following environment variables are currently supported:
 
