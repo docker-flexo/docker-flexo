@@ -12,7 +12,7 @@ WORKDIR /tmp
 RUN mkdir /tmp/flexo_sources
 
 RUN wget -q https://github.com/nroi/flexo/archive/$FLEXO_VERSION.tar.gz -O flexo.tar.gz && \
-    wget -q https://github.com/nroi/scruffy/archive/0.1.0.tar.gz -O scruffy.tar.gz && \
+    wget -q https://github.com/nroi/scruffy/archive/0.2.0.tar.gz -O scruffy.tar.gz && \
     tar xf flexo.tar.gz && \
     tar xf scruffy.tar.gz
 
@@ -22,10 +22,10 @@ RUN cd /tmp/flexo-$FLEXO_VERSION/flexo && \
     cp -r flexo /tmp/flexo_sources/ && \
     cp /tmp/flexo-$FLEXO_VERSION/flexo_purge_cache /tmp/flexo_purge_cache
 
-RUN cd '/tmp/scruffy-0.1.0' && \
+RUN cd '/tmp/scruffy-0.2.0' && \
     cargo vendor && \
     cd .. && \
-    cp -r 'scruffy-0.1.0' /tmp/scruffy_sources
+    cp -r 'scruffy-0.2.0' /tmp/scruffy_sources
 
 FROM rust:1.64.0-buster as build
 
