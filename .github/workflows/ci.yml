@@ -6,6 +6,7 @@ on:
       - master
     tags:
       - '*.*.*'
+      - 'latest'
 
 jobs:
   push_to_dockerhub:
