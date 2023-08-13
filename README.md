@@ -35,3 +35,26 @@ FLEXO_REFRESH_LATENCY_TESTS_AFTER
 ```
 
 If you want to open an issue, please use the Flexo repository (link above) instead of this repository.
+
+
+## Pushing a new release
+
+the following section is not relevant for end users: It's intended for the maintainer as a reference to describe
+the steps for pushing a new release to Docker Hub.
+
+1. Update `Dockerfile`: Bump the `FLEXO_VERSION` (most recent version is [here](https://github.com/nroi/flexo/tags))
+   and also consider bumping the Rust version, if a new version is available.
+2. Tag the current commit with the given version (e.g. `1.6.9`)
+3. Tag the current commit as `latest`: This is important to make sure users who do a simple
+   `docker pull nroi/flexo:latest` get the most recent version.
+4. Remove the `latest` tag from the remote:
+    ```
+    git push origin --delete latest
+    ```
+5. Push both tags to the remote:
+    ```
+   git push origin latest
+   git push origin <most-recent-tag>
+   ```
+6. Visit https://hub.docker.com/r/nroi/flexo/tags and make sure that both the versioned tag and the `latest` tag
+   have been updated.
